@@ -1,0 +1,14 @@
+#!/bin/bash 
+OPTS=$(echo -e "Record\nStop\n" | dmenu -i -p "Choose: ")
+now=$(date +%Y%m%d%H%M%S)
+if ls $HOME/Videos/Screencast; then
+      mkdir $HOME/Videos/Screencast/
+else 
+   mkdir $HOME/Videos/Screencast
+   fi
+
+case $OPTS in
+   Record) ffmpeg -video_size 1920x1080 -framerate 60 -f x11grab -i :0.0+0,0 -c:v libx264rgb Videos/Screencast/$now.mkv ;;    
+ Stop) killall ffmpeg ;; 
+   *) ;;
+   esac
