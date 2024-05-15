@@ -5,10 +5,10 @@ if ls $HOME/Videos/Screencast; then
       mkdir $HOME/Videos/Screencast/
 else 
    mkdir $HOME/Videos/Screencast
-   fi
+fi
 
 case $OPTS in
-   Record) ffmpeg -video_size 1920x1080 -framerate 60 -f x11grab -i :0.0+0,0 -c:v libx264rgb Videos/Screencast/$now.mkv ;;    
+   Record) ffmpeg -video_size 1920x1080 -framerate 24 -f x11grab -i :0.0+0,0 -c:v libx264rgb -preset fast $HOME/Videos/Screencast/$now.mkv ;;    
  Stop) killall ffmpeg ;; 
    *) ;;
    esac
